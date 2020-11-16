@@ -4,6 +4,12 @@
 A simple App that tracks covid-19 stats world wide
 ```
 
+## Project updates scheduled
+
+```
+Adding search filter for countries
+```
+
 ## Project setup
 
 ```
