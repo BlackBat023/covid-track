@@ -71,7 +71,6 @@ export default {
     margin-right: auto;
     margin: 5.5%;
     border-radius: 10px;
-    
 }
 
 .country-card:hover {
