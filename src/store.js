@@ -11,15 +11,19 @@ const api2 = "https://corona.lmao.ninja/v3/covid-19/countries";
 
 export const store = new Vuex.Store({
     state: {
-        data: []
+        data: [],
+        value: '',
     },
     mutations: {
         setData(state, data){
             state.data = data
-        }
+        },
     },
     getters: {
-
+        getInputValue(state){
+            console.log(state.value);
+            return state.value;
+        }
     },
     actions: {
         async getData({ commit }){
@@ -35,8 +39,11 @@ export const store = new Vuex.Store({
             .catch(error => {
                 console.log(error);
             })
-            //console.log(data);
+            console.log(this.state.obj);
             
+        },
+        serchInputValue(state, value){
+            state.value = value;
         }
     }
 })

@@ -25,13 +25,17 @@ import {mapState, mapActions} from 'vuex'
 export default {
     name: "Countries",
     props:{
-        data: Array
+        data: Array,
     },
     computed:{
-        ...mapState(['data'])
+        ...mapState(['data', 'value']),
+        get() {
+            console.log(this.$store.value)
+            return this.$store.value
+        }
     },
     methods: {
-        ...mapActions(['getData'])
+        ...mapActions(['getData']),
     },
     mounted(){
         this.getData();
@@ -44,13 +48,16 @@ export default {
 <style scoped>
 .countries-wrap {
     margin: 0;
+    align-items:center;
+
 }
 
 .country-box {
-    display: flex;
+    display: grid;
     flex-direction: row;
     flex-wrap: wrap;
     text-align: center;
+    grid-template-columns: auto auto auto auto auto;
 }
 
 .country-card {
@@ -62,11 +69,18 @@ export default {
     padding: 2.5%;
     margin-left: auto;
     margin-right: auto;
+    margin: 5.5%;
     border-radius: 10px;
+    
+}
+
+.country-card:hover {
+    transform: scale(1.1, 1.15);
     box-shadow: -1px 2px 2px 3px rgba(0, 0, 0, 0.7);
 }
 
 .country-item {
+    transform: translate();
     list-style: none;
     margin: 0;
     text-align: center;
