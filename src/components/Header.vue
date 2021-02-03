@@ -10,9 +10,7 @@
     <b-collapse id="nav-collapse" is-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search" :value="inputValue" @change="searchInputValue"></b-form-input>
-        </b-nav-form>
+        
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -20,11 +18,22 @@
 </template>
 
 <script>
-import store from '../store'
+//import store from '../store'
+import { mapMutations } from 'vuex'
+
 export default {
+  name: 'Header',
+  data(){
+    return{
+      newValue: ''
+    }
+  },
   methods: {
-    searchInputValue:(event) => {
-      store.commit('searchInputValue', event.target.value);
+    ...mapMutations([
+      'ADD_VALUE'
+    ]),
+    addValue: function() {
+      this.ADD_VALUE(this.newValue)
     }
   }
 }
