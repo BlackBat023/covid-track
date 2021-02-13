@@ -1,39 +1,25 @@
 <template>
-  <div id="app">
-    <div class="header">
+  <div>
+    <header class="header">
       <Header />
-    </div>
-    <div class="world-totals">
-      <TotalsView />
-    </div>
-    <div class="seperator"></div>
-    <div class="country-totals">
-      <Countries />
-    </div>
+    </header>
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
-import TotalsView from './components/TotalsView'
-import Countries from './components/Countries'
 
 export default {
   name: 'App',
-  components: {
+  components:{
     Header,
-    TotalsView,
-    Countries
-  },
-
-  data: () => ({
-
-  }),
-  created() {
-    
   }
-};
+}
 </script>
+
 
 <style>
 #app {
@@ -42,37 +28,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 0;
 }
 
-.world-wrap {
-  margin: 0;
-  padding: 3%;
-  width: 100%;
-  height: auto;
-  background: linear-gradient(to bottom, royalblue, white);
-  display: grid;
+#nav {
+  padding: 30px;
 }
 
-.logo {
-  grid-row: 1 / span 2;
-  grid-column: 1;
-  margin-right: 5px;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-.title {
-  grid-column: 2 / span 6;
-  grid-row: 1;
-  text-shadow: -1px 2px 3px white;
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
-
-.stats-wrap {
-  grid-column: 2 / span 6;
-  grid-row: 2;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  grid-gap: 10px;
-}
-
 </style>

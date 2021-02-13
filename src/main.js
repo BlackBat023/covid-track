@@ -7,6 +7,7 @@ import {store} from './store';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import router from './router'
 
 
 Vue.config.productionTip = false
@@ -18,5 +19,6 @@ Vue.use(IconsPlugin)
 Vue.use(axios,VueAxios)
 new Vue({
   store,
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')

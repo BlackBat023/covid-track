@@ -3,26 +3,27 @@
         <div class="country-search container">
             <b-form-input size="sm" type="text" class="mr-sm-2" placeholder="Search..." v-model="search" ></b-form-input>
         </div>
-        <div class="country-box">
+        <div class="country-box" v-if="countryFilter">
             <table class="country-card" v-for="country in countryFilter" :key="country.countryInfo._id">
-                <tr>
-                    <th><h3 class="card-title">{{ country.country }}</h3></th>
-                </tr>
-                <td class="country-item">
-                    <ul
-                        :class="country.recovered >= country.deaths ? 'green' : 'red'"
-                    >
-                        <li>Total Cases:<br/> {{ country.cases }}</li>
-                        <li>Active Cases:<br/> {{ country.active }}</li>
-                        <li>Critical Cases:<br/> {{ country.critical }}</li>
-                        <li>Deaths:<br/> {{ country.deaths }}</li>
-                        <li>Recovered:<br/> {{ country.recovered }}</li>
-                        <li>Tests Done:<br/> {{ country.tests }}</li>
-                    </ul>
-                </td>
+                <router-link :to="'/details/' + country.countryInfo._id" class="country-link">
+                    <tr>
+                        <th><h3 class="card-title">{{ country.country }}</h3></th>
+                    </tr>
+                    <td class="country-item">
+                        <ul
+                            :class="country.recovered >= country.deaths ? 'green' : 'red'"
+                        >
+                            <li>Total Cases:<br/> {{ country.cases }}</li>
+                            <li>Active Cases:<br/> {{ country.active }}</li>
+                            <li>Critical Cases:<br/> {{ country.critical }}</li>
+                            <li>Deaths:<br/> {{ country.deaths }}</li>
+                            <li>Recovered:<br/> {{ country.recovered }}</li>
+                            <li>Tests Done:<br/> {{ country.tests }}</li>
+                        </ul>
+                    </td>
+                </router-link>
             </table>
         </div>
-
     </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
         }
     },
     props:{
-        data: [],
+        data: Array,
     },
     computed:{
         ...mapState(['data']),
@@ -47,7 +48,7 @@ export default {
             });
         }
     },
-    methods: {
+    methods:{
         ...mapActions(['getData']),
     },
     mounted(){
@@ -72,6 +73,11 @@ export default {
     text-align: center;
     grid-template-columns: auto auto auto auto;
     width: 100%;
+}
+
+.country-link {
+    text-decoration: none;
+    color: black;
 }
 
 .country-search {
